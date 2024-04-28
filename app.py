@@ -32,7 +32,7 @@ st.plotly_chart(figl)
 df4 = df.groupby('Year')['State'].value_counts().reset_index()
 df4 = df4.groupby('State')['count'].sum().reset_index()
 
-figp = px.pie(df4, values='count', names='State', template='plotly_dark')
+figp = px.pie(df4, values='count', names='State', template='plotly_dark', title='Homicides Documented by State')
 figp.update_traces(textposition='inside')
 figp.update_layout(uniformtext_minsize=12, uniformtext_mode='hide')
 st.plotly_chart(figp)
@@ -40,7 +40,7 @@ st.plotly_chart(figp)
 df5 = df.drop(df[df['Perpetrator Race'] == 'Unknown'].index)
 df5 = df5.groupby('Year')['Perpetrator Race'].value_counts().reset_index()
 
-figs = px.scatter(df5, x='Year', y='count', color='Perpetrator Race', template='plotly_dark')
+figs = px.scatter(df5, x='Year', y='count', color='Perpetrator Race', template='plotly_dark', title='Perpetrator Race')
 st.plotly_chart(figs)
 
 df['Perpetrator Age'] = df['Perpetrator Age'].replace(' ',0)
