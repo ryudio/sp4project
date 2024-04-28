@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 
 st.header("Homicide Reports, 1980-2014")
 
-df = pd.read_csv('./database.txt')
+df = pd.read_csv('./database.zip')
 df1 = df.drop(df[df['Perpetrator Sex'] == 'Unknown'].index)
 df2 = df1.groupby('Year')['Perpetrator Sex'].value_counts().reset_index()
 
