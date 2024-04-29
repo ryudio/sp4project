@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 st.header("Homicide Reports, 1980-2014")
 
 df = pd.read_csv('./database.zip')
+
 df1 = df.drop(df[df['Perpetrator Sex'] == 'Unknown'].index)
 df2 = df1.groupby('Year')['Perpetrator Sex'].value_counts().reset_index()
 
@@ -66,10 +67,3 @@ stdf = stdf['Crime Solved'].value_counts()
 figp2 = px.pie(stdf, values=stdf.values, color=stdf.index, template='plotly_dark')
 st.plotly_chart(figp2)
 del stdf
-
-import os, psutil
-def usage():
-     process = psutil.Process(os.getpid())
-     return process.memory_info()[0] / float(2 ** 20)
-
-st.text(usage())
